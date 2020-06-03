@@ -76,7 +76,7 @@ public class WebSocketServer {
             try {
                 //解析发送的报文
                 JSONObject jsonObject = JSON.parseObject(message);
-                //追加发送人(防止串改)
+                //追加发送人(防止篡改)
                 jsonObject.put("fromUserId",this.uid);
                 Integer toUserId=jsonObject.getInteger("toUserId");
                 //传送给对应toUserId用户的websocket

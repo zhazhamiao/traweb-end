@@ -12,6 +12,6 @@ public class StaResourcePathWebAppConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(("/static/**")).addResourceLocations("file:F:/static/");
+        registry.addResourceHandler(("/static/**")).addResourceLocations("file:/upload/static/");
     }
 }

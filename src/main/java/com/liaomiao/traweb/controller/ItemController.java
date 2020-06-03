@@ -23,7 +23,7 @@ public class ItemController {
     /*
      * 获取所有的一级分类
      * */
-    @GetMapping("getTopCategories")
+    @GetMapping("/getTopCategories")
     public List<TopCategory> getTopCategories() {
         return itemService.getTopCategories();
     }
@@ -31,23 +31,29 @@ public class ItemController {
     /*
      * 根据一级分类id获得下属的二级分类
      * */
-    @GetMapping("getSecCategories")
+    @GetMapping("/getSecCategories")
     public List<SecCategory> getSecCategories(@RequestParam("topCategoryId") int topCategoryId) {
         return itemService.getSecCategories(topCategoryId);
     }
 
-    @GetMapping("getItemsByCategory")
+    @GetMapping("/getItemsByCategory")
     public List<Item> getItemsByCategory(@RequestParam("categoryId") int categoryId, @RequestParam("page") int page) {
         return itemService.getItemsByCategoryId(page, categoryId);
     }
 
-    @GetMapping("itemsStatus")
+    @GetMapping("/itemsStatus")
     public List<Item> itemsStatus(@RequestParam("uid") int uid,
                                   @RequestParam("status") int status) {
-        return itemService.itemsStatus(uid,status);
+        return itemService.itemsStatus(uid, status);
     }
-    @GetMapping("getItemById")
-    public Item getItemById(@RequestParam("itemId")Integer id) {
+
+    @GetMapping("/getItemById")
+    public Item getItemById(@RequestParam("itemId") Integer id) {
         return itemService.getItemById(id);
+    }
+
+    @GetMapping("/search")
+    public List<Item> onSearch(@RequestParam("keyword") String keyword, @RequestParam("page") Integer page) {
+        return itemService.onSearchService(keyword, page);
     }
 }

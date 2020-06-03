@@ -54,7 +54,7 @@ public class UserService {
             userRecord.setSex((byte) 2);
             userRecord.setName("");
             //默认的头像
-            userRecord.setImg("static/images/user_image/default.jpg");
+            userRecord.setImg("/static/images/user_image/default.jpg");
             userRecord.setPhone("");
             //插入后返回自增主键
             userMapper.insert(userRecord);
@@ -156,5 +156,9 @@ public class UserService {
         user.setName("");
         user.setAddrId(null);
         return user;
+    }
+
+    public User byUidDetailed(Integer uid) {
+        return userMapper.selectByPrimaryKey(uid);
     }
 }

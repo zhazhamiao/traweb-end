@@ -405,6 +405,66 @@ public class OrderForGoodsExample {
             return (Criteria) this;
         }
 
+        public Criteria andSellerIsNull() {
+            addCriterion("seller is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerIsNotNull() {
+            addCriterion("seller is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerEqualTo(Integer value) {
+            addCriterion("seller =", value, "seller");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerNotEqualTo(Integer value) {
+            addCriterion("seller <>", value, "seller");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerGreaterThan(Integer value) {
+            addCriterion("seller >", value, "seller");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerGreaterThanOrEqualTo(Integer value) {
+            addCriterion("seller >=", value, "seller");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerLessThan(Integer value) {
+            addCriterion("seller <", value, "seller");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerLessThanOrEqualTo(Integer value) {
+            addCriterion("seller <=", value, "seller");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerIn(List<Integer> values) {
+            addCriterion("seller in", values, "seller");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerNotIn(List<Integer> values) {
+            addCriterion("seller not in", values, "seller");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerBetween(Integer value1, Integer value2) {
+            addCriterion("seller between", value1, value2, "seller");
+            return (Criteria) this;
+        }
+
+        public Criteria andSellerNotBetween(Integer value1, Integer value2) {
+            addCriterion("seller not between", value1, value2, "seller");
+            return (Criteria) this;
+        }
+
         public Criteria andBuyerIsNull() {
             addCriterion("buyer is null");
             return (Criteria) this;

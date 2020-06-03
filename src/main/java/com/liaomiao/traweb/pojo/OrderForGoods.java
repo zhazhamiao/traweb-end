@@ -1,19 +1,38 @@
 package com.liaomiao.traweb.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class OrderForGoods {
     private Integer orderId;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date launchDate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date endDate;
 
     private Byte status;
 
     private Integer itemId;
 
+    private Integer seller;
+
     private Integer buyer;
+
+    public OrderForGoods(Byte status, Integer itemId, Integer seller, Integer buyer) {
+        this.status = status;
+        this.itemId = itemId;
+        this.seller = seller;
+        this.buyer = buyer;
+    }
+    public OrderForGoods() {
+
+    }
 
     public Integer getOrderId() {
         return orderId;
@@ -53,6 +72,14 @@ public class OrderForGoods {
 
     public void setItemId(Integer itemId) {
         this.itemId = itemId;
+    }
+
+    public Integer getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Integer seller) {
+        this.seller = seller;
     }
 
     public Integer getBuyer() {

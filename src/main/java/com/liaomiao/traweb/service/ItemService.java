@@ -11,8 +11,6 @@ import com.liaomiao.traweb.pojo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -72,5 +70,16 @@ public class ItemService {
 
     public Item getItemById(int id) {
         return itemMapper.selectByPrimaryKey(id);
+    }
+
+    public List<Item> onSearchService(String keyword,Integer index) {
+        ItemExample example = new ItemExample();
+        ItemExample.Criteria criteria = example.createCriteria();
+        Page<Object> page = PageHelper.startPage(index,10);
+
+        criteria.andNameLike("%"+keyword+"%");
+        example.setOrderByClause("item.id desc");
+        PageInfo<Item> info = new PageInfo<>(itemMapper.selectByExample(example));
+        return info.getList();
     }
 }

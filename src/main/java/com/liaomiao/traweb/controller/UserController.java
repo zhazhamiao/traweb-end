@@ -53,7 +53,13 @@ public class UserController {
     }
 
     @GetMapping("/byUid")
-    public User byuid(@RequestParam("uid") Integer uid) {
+    public User byUid(@RequestParam("uid") Integer uid) {
         return userService.byUid(uid);
+    }
+
+    @GetMapping("/byUidDetailed")
+    @UserLoginToken
+    public User byUidDetailed(@RequestParam("uid") Integer uid) {
+        return userService.byUidDetailed(uid);
     }
 }

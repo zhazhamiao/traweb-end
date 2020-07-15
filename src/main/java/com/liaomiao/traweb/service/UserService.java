@@ -64,7 +64,6 @@ public class UserService {
             UserRole userRole = new UserRole(uid, 1, date, (byte) 1);
             userRoleMapper.insert(userRole);
             log.info("INSERT ROLE ID: 1 "+"UID: "+uid);
-
         } catch (Exception e) {
             e.printStackTrace();
             //手动回滚
@@ -74,6 +73,7 @@ public class UserService {
         return new RespBean("success", "注册成功");
     }
 
+    //登录校验
     public Map<String,Object> loginService(User user) {
         Map<String,Object> resultMap = new HashMap<>();
         UserExample userExample = new UserExample();

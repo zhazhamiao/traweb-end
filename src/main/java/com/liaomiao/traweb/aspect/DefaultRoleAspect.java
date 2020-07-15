@@ -26,6 +26,7 @@ public class DefaultRoleAspect {
         this.roleMapper = roleMapper;
     }
 
+    // 切点，defaultrole包下的所有类和方法
     @Pointcut("execution (public * com.liaomiao.traweb.service.defaultrole.*.*(..))")
     public void pointcut() {
     }
@@ -36,6 +37,7 @@ public class DefaultRoleAspect {
         assert attributes != null;
         HttpServletRequest request = attributes.getRequest();
         HttpServletResponse response = attributes.getResponse();
+        // 从request中拿出携带的uid
         String uid = request.getParameter("uid");
 
         try {

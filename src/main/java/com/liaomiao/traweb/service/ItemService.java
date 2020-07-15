@@ -38,23 +38,26 @@ public class ItemService {
         this.itemMapper = itemMapper;
     }
 
+    // 获取所有一级分类
     public List<TopCategory> getTopCategories() {
         return topCategoryMapper.selectByExample(new TopCategoryExample());
     }
 
+    // 通过一级分类获取对应的二级分类
     public List<SecCategory> getSecCategories(int topCategoryId) {
         SecCategoryExample example = new SecCategoryExample();
         SecCategoryExample.Criteria criteria = example.createCriteria();
         criteria.andCidEqualTo(topCategoryId);
         return secCategoryMapper.selectByExample(example);
     }
+
     /*
     * 通过类别搜索商品
     * */
     public List<Item> getItemsByCategoryId(int index ,int categoryId) {
+        // 使用pageHelper对查询到的数据进行分类
         Page<Object> page = PageHelper.startPage(index,10);
         PageInfo<Item> info = new PageInfo<>(itemMapper.selectItemsByCategoryId(categoryId));
-
         return info.getList();
     }
 
@@ -78,6 +81,7 @@ public class ItemService {
         Page<Object> page = PageHelper.startPage(index,10);
 
         criteria.andNameLike("%"+keyword+"%");
+        criteria.andStatusEqualTo((byte)1);
         example.setOrderByClause("item.id desc");
         PageInfo<Item> info = new PageInfo<>(itemMapper.selectByExample(example));
         return info.getList();

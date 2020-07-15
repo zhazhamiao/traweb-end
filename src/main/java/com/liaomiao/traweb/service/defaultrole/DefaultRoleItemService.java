@@ -61,11 +61,12 @@ public class DefaultRoleItemService {
         filename = uuid + "_" + "uid" + item.getSeller() + '.' + suffix;
         try {
             file.transferTo(new File(path, filename));
+            // 设置图片的服务器地址
             item.setImg("/static/images/item_image/"+filename);
-            //0表示待审核
+            // 0表示待审核
             item.setStatus((byte)0);
             itemMapper.insertSelective(item);
-            System.out.println(item.getId());
+            // Mybatis的useGeneratedKeys返回自增主键，在item_category表里插入一条数据
             itemCategoryMapper.insert(new ItemCategoryKey(item.getId(),categoryId));
         } catch (Exception e) {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
@@ -82,7 +83,7 @@ public class DefaultRoleItemService {
         Item item = itemMapper.selectByPrimaryKey(itemId);
         item.setQuantity(item.getQuantity()-1);
         if (item.getQuantity() < 0) {
-            throw new RuntimeException("商品已售空");
+            throw new RuntimeException("已售空");
         }
         if (item.getQuantity() == 0) {
             item.setStatus((byte)2);
